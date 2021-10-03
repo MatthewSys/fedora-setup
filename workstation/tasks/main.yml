@@ -1,0 +1,53 @@
+---
+# tasks file for workstation
+- name: remove shet
+  yum:
+    name: "{{ remove }}"
+    state: absent
+- name: install chrome repo
+  yum_repository:
+    name: google-chrome
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    gpgcheck: yes
+    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+    enabled: yes
+    description: chrome
+    state: present
+
+- name: install vbox repo
+  get_url:
+    url: http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+    dest: /etc/yum.repos.d/virtualbox.repo
+
+- name: update
+  yum:
+    name: "*"
+    state: latest
+
+- name: devtoolsinstall
+  yum:
+    name: "@Development tools"
+    state: present
+
+- name: install libs
+  yum:
+    name: "{{ libs }}"
+    state: present
+
+- name: install basics
+  yum:
+    name: "{{ basic }}"
+    state: present
+- name: setup snapd
+  file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    state: link
+- name: intsall repo hub flatpak
+  flatpak_remote:
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo 
+    name: hub
+    state: present
+- name: install flatpack packets
+  flatpak:
+    name: "{{flatvar}}"

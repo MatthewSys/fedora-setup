@@ -1,0 +1,38 @@
+---
+# vars file for workstation
+remove:
+  - rhythmbox
+  - firefox
+libs:
+  - kernel-headers 
+  - kernel-devel
+  - dkms 
+  - elfutils-libelf-devel 
+  - qt5-qtx11extras
+basic:
+  - traceroute
+  - telnet
+  - bind-utils
+  - tree
+  - git
+  - vim
+  - tmux
+  - ansible
+  - google-chrome-stable
+  - torbrowser-launcher
+  - VirtualBox-6.1
+  - chrome-gnome-shell
+  - minicom
+  - gnome-tweak-tool
+  - timeshift
+  - yamllint
+flatvar:
+   com.spotify.Client
+   org.videolan.VLC
+   org.telegram.desktop
+   org.mozilla.Thunderbird
+   org.gnome.Extensions
+   org.qbittorrent.qBittorrent
+   org.flameshot.Flameshot
+   com.jetbrains.PyCharm-Community
+   io.atom.Atom

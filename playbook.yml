@@ -1,0 +1,6 @@
+---
+- name: prepare workstation to work
+  hosts: all
+  become: yes
+  roles: 
+    - workstation
