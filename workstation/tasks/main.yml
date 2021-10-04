@@ -38,11 +38,6 @@
   yum:
     name: "{{ basic }}"
     state: present
-- name: setup snapd
-  file:
-    src: /var/lib/snapd/snap
-    dest: /snap
-    state: link
 - name: intsall repo hub flatpak
   flatpak_remote:
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo 
@@ -51,3 +46,18 @@
 - name: install flatpack packets
   flatpak:
     name: "{{flatvar}}"
+- name: configure local resolver
+  lineinfile:
+    path: /etc/systemd/resolved.conf
+    regexp: '^#DNS='
+    line: DNS=127.0.0.1
+- name: restart daemon resolv
+  service:
+    name: systemd-resolved
+    state: restarted
+- name: enable & start resolver
+  service:
+    name: named
+    state: started
+    enabled: yes
+

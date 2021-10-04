@@ -26,6 +26,9 @@ basic:
   - gnome-tweak-tool
   - timeshift
   - yamllint
+  - bind 
+  - bind-utils 
+  - bind-chroot
 flatvar:
    com.spotify.Client
    org.videolan.VLC
